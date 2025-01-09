@@ -1,0 +1,4 @@
+Flask==2.2.2
+requests==2.26.0
+python-dotenv==0.21.0  # For loading environment variables
+gunicorn==20.1.0  # For production deployment
