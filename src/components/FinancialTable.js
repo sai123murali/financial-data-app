@@ -9,7 +9,10 @@ const FinancialTable = () => {
   const [maxRevenue, setMaxRevenue] = useState("");
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
+  const [sortField, setSortField] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
 
+  // Fetch data from backend API
   useEffect(() => {
     const fetchData = async () => {
       const filters = {
@@ -17,12 +20,14 @@ const FinancialTable = () => {
         end_year: endYear || undefined,
         min_revenue: minRevenue || undefined,
         max_revenue: maxRevenue || undefined,
+        sort_field: sortField || undefined,
+        sort_order: sortOrder || undefined,
       };
       const result = await fetchCompanyIncomeStatements(symbol, filters);
       setData(result);
     };
     fetchData();
-  }, [symbol, startYear, endYear, minRevenue, maxRevenue]);
+  }, [symbol, startYear, endYear, minRevenue, maxRevenue, sortField, sortOrder]);
 
   const handleFilter = () => {
     const filters = {
@@ -32,6 +37,12 @@ const FinancialTable = () => {
       max_revenue: maxRevenue,
     };
     fetchCompanyIncomeStatements(symbol, filters).then((filteredData) => setData(filteredData));
+  };
+
+  const handleSort = (field) => {
+    const order = sortField === field && sortOrder === "asc" ? "desc" : "asc";
+    setSortField(field);
+    setSortOrder(order);
   };
 
   return (
@@ -69,6 +80,27 @@ const FinancialTable = () => {
         />
         <button className="bg-blue-600 text-white py-3 px-4 rounded-lg shadow-md" onClick={handleFilter}>
           Apply Filters
+        </button>
+      </div>
+
+      <div className="flex justify-between mb-4">
+        <button
+          className="bg-green-500 text-white py-2 px-4 rounded-lg"
+          onClick={() => handleSort("date")}
+        >
+          Sort by Date {sortField === "date" && (sortOrder === "asc" ? "↑" : "↓")}
+        </button>
+        <button
+          className="bg-green-500 text-white py-2 px-4 rounded-lg"
+          onClick={() => handleSort("revenue")}
+        >
+          Sort by Revenue {sortField === "revenue" && (sortOrder === "asc" ? "↑" : "↓")}
+        </button>
+        <button
+          className="bg-green-500 text-white py-2 px-4 rounded-lg"
+          onClick={() => handleSort("netIncome")}
+        >
+          Sort by Net Income {sortField === "netIncome" && (sortOrder === "asc" ? "↑" : "↓")}
         </button>
       </div>
 

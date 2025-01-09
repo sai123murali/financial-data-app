@@ -17,6 +17,7 @@ BASE_URL = "https://financialmodelingprep.com/api/v3/income-statement"
 # Endpoint to fetch and filter financial data
 @app.route('/api/financial-data/<string:symbol>', methods=['GET'])
 def get_financial_data(symbol):
+    # Construct external API URL
     api_url = f"{BASE_URL}/{symbol}?period=annual&apikey={API_KEY}"
     response = requests.get(api_url)
     if response.status_code != 200:
@@ -24,13 +25,17 @@ def get_financial_data(symbol):
 
     data = response.json()
 
-    # Query parameters
+    # Query parameters for filtering
     start_year = request.args.get('start_year', type=int)
     end_year = request.args.get('end_year', type=int)
     min_revenue = request.args.get('min_revenue', type=float)
     max_revenue = request.args.get('max_revenue', type=float)
 
-    # Filter data
+    # Query parameters for sorting
+    sort_field = request.args.get('sort_field')
+    sort_order = request.args.get('sort_order', 'asc')  # Default to ascending
+
+    # Filter data based on query parameters
     filtered_data = []
     for record in data:
         year = int(record['date'][:4])
@@ -44,9 +49,13 @@ def get_financial_data(symbol):
             continue
         filtered_data.append(record)
 
+    # Sort data if sort_field is provided
+    if sort_field:
+        reverse = sort_order == 'desc'
+        filtered_data.sort(key=lambda x: x.get(sort_field, 0), reverse=reverse)
+
     return jsonify(filtered_data)
 
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
-
