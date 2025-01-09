@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# **Financial Data Dashboard**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web application that displays financial data for popular companies, allowing users to filter and sort data by revenue, net income, and date.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## **Table of Contents**
 
-### `npm start`
+1. [Getting Started](#getting-started)  
+2. [Frontend (FE) Setup](#frontend-fe-setup)  
+3. [Backend (BE) Setup](#backend-be-setup)  
+4. [Application Overview](#application-overview)  
+5. [Tech Stack](#tech-stack)  
+6. [Deployment](#deployment)  
+7. [Links](#links)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **Getting Started**
 
-### `npm test`
+To run the full project locally, ensure you have:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node.js** installed (for frontend)
+- **Python** installed (for backend)
+- `npm` (Node Package Manager)
+- `pip` (Python Package Installer)
 
-### `npm run build`
+Clone the project:
+```bash
+git clone <your-repository-link>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend (FE) Setup
+Commands to Run Frontend:
+Navigate to the project root:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+bash
+Copy code
+cd financial-data-app
+Install dependencies:
 
-### `npm run eject`
+bash
+Copy code
+npm install
+Start the frontend (development mode):
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+bash
+Copy code
+npm start
+Open http://localhost:3000 to view it in your browser.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Build for Production:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+Copy code
+npm run build
+This command creates an optimized production build in the build/ folder.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Backend (BE) Setup
+Commands to Run Backend:
+Navigate to the backend/ folder:
+bash
+Copy code
+cd backend
+Create and activate a Python virtual environment:
+bash
+Copy code
+python -m venv venv
+source venv/bin/activate  # For Linux/Mac
+.\venv\Scripts\activate  # For Windows
+Install dependencies:
+bash
+Copy code
+pip install -r requirements.txt
+Create a .env file in the backend/ folder:
+makefile
+Copy code
+API_KEY=your_financial_api_key_here
+Run the backend server:
+bash
+Copy code
+python app.py
+The backend runs at http://localhost:5000.
+Application Overview
+This dashboard displays financial data for major companies:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Included Companies:
+Amazon (AMZN)
+Apple (AAPL)
+Google (GOOGL)
+Netflix (NFLX)
+Meta (META)
+Features:
+Filtering:
+Filter data by start and end years.
+Apply minimum and maximum revenue values.
+Sorting:
+Sort by Date (ascending/descending).
+Sort by Revenue (ascending/descending).
+Sort by Net Income (ascending/descending).
+Tech Stack
+Frontend (FE):
+React (JavaScript framework)
+Tailwind CSS (for styling)
+Axios (for API calls)
+Backend (BE):
+Flask (Python web framework)
+Requests (for fetching external API data)
+Gunicorn (for production-ready deployment)
+API Used:
+Financial Modeling Prep API
+Deployment
+Frontend:
+Platform: Netlify
+Frontend URL: https://your-frontend-url.netlify.app
+Backend:
+Platform: Render
+Backend URL: https://financial-data-app-4lt9.onrender.com
+Links
+GitHub Repository: Your GitHub Link
+Frontend Deployed Site: Netlify URL
+Backend API: Render URL
